@@ -1,0 +1,32 @@
+@(gpform: Form[models.Son])(implicit request: RequestHeader, paths: controllers.CRUDerPaths)
+
+@import helper._
+
+@helper.form(action = new play.api.mvc.Call("POST",paths.submit)) {
+	
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+     <div class="centered form">
+     
+	    <ul>
+	    	<li>
+	    		@helper.inputText(gpform("id"))
+	    	</li>
+	    	<li>
+	    		@helper.inputText(gpform("name"))
+	    	</li>
+	    	<li>
+	    		@helper.inputText(gpform("fa"))
+	    		<label>Insert Id</label>
+	    	</li>
+	    	<li>
+	    		<label>Remove element</label>
+	    		<input type="checkbox" name="remove" />
+	    	</li>
+	    </ul>
+	    
+	    <input type="submit" />
+	    
+    </div>
+    
+}

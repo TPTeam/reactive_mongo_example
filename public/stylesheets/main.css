@@ -1,0 +1,144 @@
+html {
+	font-size: 16px;
+	font-family: Arial, sans-serif;
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	background: #eeeeee;
+	background: -moz-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee),
+		color-stop(100%, #cccccc));
+	background: -webkit-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+	background: -o-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+	background: -ms-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+	background: linear-gradient(to bottom, #eeeeee 0%, #cccccc 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(                  startColorstr='#eeeeee',
+		endColorstr='#cccccc', GradientType=0);
+	height: 100%;
+}
+
+ul {
+	display: block;
+	margin: 0;
+	-webkit-padding-start: 0;
+	-moz-padding-start: 0;
+}
+
+ul.menu {
+	width: 100%;
+	height: 8%;
+	margin: 0;
+	display: inline-block;
+	background: whitesmoke;
+}
+
+ul.menu li:last {
+	margin-right: 2.5%;
+}
+
+li {
+	padding: 4%;
+	text-align: center;
+	margin-top: 2%;
+	display: block;
+	background: whitesmoke;
+}
+
+ul.menu li {
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	width: 30%;
+	margin-left: 2.5%;
+	padding-top: 2%;
+}
+
+a {
+	color: #F57C2B;
+	font-weight: bold;
+	text-decoration: initial;
+	font-size: 1.2em;
+}
+
+td a {
+	color: #F35252;
+	font-weight: normal;
+	font-size: 1em;
+}
+
+li:hover {
+	background: #A3A3A3;
+}
+
+li:hover a {
+	color: #FFCD8E;
+}
+
+label {
+	font-family: Arial, sans-serif;
+}
+
+div.form li {
+	padding: 4%;
+	text-align: left;
+	display: block;
+	background: whitesmoke;
+}
+
+dd,dt {
+	display: inline-block;
+}
+
+dt {
+	min-width: 20%;
+}
+
+.centered {
+	margin: auto;
+	height: 90%;
+	width: 76%;
+}
+
+.centered.main {
+	padding-top: 6%;
+	width: 70%;
+}
+
+.info {
+	font-size: 0.8em;
+	color: #BE0000;
+	font-style: italic;
+}
+
+input[type="submit"] {
+	width: 100%;
+	height: 10%;
+	margin-top: 4%;
+	font-size: 1.6em;
+	font-weight: bold;
+}
+
+.granpa_table_wrapper {
+	margin-top: 4%;
+}
+
+table.dataTable tr.even td.sorting_1 {
+	background-color: #E8E9D7;
+}
+
+table.dataTable tr.odd td.sorting_1 {
+	background-color: #D8E9D7;
+}
+
+.dataTables_wrapper {
+	position: relative;
+	margin-top: 4%;
+	clear: both;
+}

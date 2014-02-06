@@ -1,0 +1,30 @@
+@(gpform: Form[models.GranPa])(implicit request: RequestHeader, paths: controllers.CRUDerPaths)
+
+@import helper._
+
+@helper.form(action = new play.api.mvc.Call("POST",paths.submit)) {
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+     <div class="centered form">
+     
+    <ul>
+    	<li>
+    		@inputText(gpform("id"))
+    	</li>
+    	<li>
+    		@inputText(gpform("name"))
+    	</li>
+    	<li>
+    		@inputText(gpform("sons"))
+    		<label>Please, insert elements like a JSON array (i.e. ["526f9c77e4b083eec04dee31", "526e9709e4b054fb03a1574c"])</label>
+    	</li>
+    	<li>
+    		<label>Remove element</label>
+    		<input type="checkbox" name="remove" />
+    	</li>
+    
+    </ul>
+    
+    <input type="submit" />
+    </div>
+}
