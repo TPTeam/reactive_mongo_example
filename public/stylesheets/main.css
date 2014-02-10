@@ -16,10 +16,17 @@ body {
 	background: -webkit-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
 	background: -o-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
 	background: -ms-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
-	background: linear-gradient(to bottom, #eeeeee 0%, #cccccc 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(                  startColorstr='#eeeeee',
-		endColorstr='#cccccc', GradientType=0);
+	background: linear-gradient(to bottom, #FFFFFD 0%, #E1D3B2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(  
+		                     startColorstr='#eeeeee', endColorstr='#cccccc',
+		GradientType=0);
 	height: 100%;
+}
+
+h1 {
+	text-align: center;
+	color: #373737;
+	text-shadow: 2px 2px 2x #C9C9C9;
 }
 
 ul {
@@ -34,19 +41,41 @@ ul.menu {
 	height: 8%;
 	margin: 0;
 	display: inline-block;
-	background: whitesmoke;
+	background: #F5F5F5;
+	position: relative;
+	display: inline-flex;
+}
+
+ul.menu>a {
+	width: 100%;
+	align-self: stretch;
+	display: inline-block;
+}
+
+ul.menu>a>img {
+	width: 20%;
 }
 
 ul.menu li:last {
 	margin-right: 2.5%;
 }
 
-li {
+li,a.main {
 	padding: 4%;
 	text-align: center;
 	margin-top: 2%;
 	display: block;
-	background: whitesmoke;
+	/* 	background: whitesmoke; */
+	background: #FFC0A5;
+	box-shadow: 1px 01px 2px grey;
+	position: relative;
+}
+
+a.main>img {
+	width: 10%;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
 
 ul.menu li {
@@ -61,7 +90,8 @@ ul.menu li {
 }
 
 a {
-	color: #F57C2B;
+	color: #281E16;
+	text-shadow: 0px 0px 1px #FFF;
 	font-weight: bold;
 	text-decoration: initial;
 	font-size: 1.2em;
@@ -73,12 +103,12 @@ td a {
 	font-size: 1em;
 }
 
-li:hover {
-	background: #A3A3A3;
-}
-
-li:hover a {
+li:hover a,a:hover {
 	color: #FFCD8E;
+	background: #575757;
+	text-shadow: 1px 0px 2px #000;
+	color: #FFCD8E;
+	box-shadow: -1px -1px 2px inset black;
 }
 
 label {
@@ -142,3 +172,39 @@ table.dataTable tr.odd td.sorting_1 {
 	margin-top: 4%;
 	clear: both;
 }
+
+li.remove {
+	padding: 0 !important;
+}
+
+#remove {
+	display: none;
+}
+
+#remove+label[for="remove"] {
+	width: 100%;
+	background: #5AD52F;
+	height: 2.4em;
+	display: block;
+	box-shadow: 0px 0px 2px #000;
+	color: #000;
+	padding-top: 2%;
+	text-align: center;
+}
+#remove+label[for="remove"]:before {
+	content:"Click here to remove element";
+}
+
+#remove:checked+label[for="remove"] {
+	width: 100%;
+	background: #F42A2A;
+	height: 2.4em;
+	display: block;
+	box-shadow: 0px 0px 8px #5D0000 inset;
+	color: #FFF;
+	padding-top: 2%;
+}
+#remove:checked+label[for="remove"]:before {
+	content:"Element will be REMOVED!";
+
+	}

@@ -2,19 +2,20 @@
 
 @main("MongoDB CRUD & TablePage") {
 
+		<h1>Here's the little family: edit it and make it bigger!</h1>
+		
     <div class="centered main">
 
-    <ul>
-    	<li>
-    		<a href="/granpa">Granpa</a>
-    	</li>
-    	<li>
-    		<a href="/father">Father</a>
-    	</li>
-    	<li>
-    		<a href="/son">Son</a>
-    	</li>
-    </ul>
+    		<a href="/granpa" class="main">Granpa
+    			<img src="@routes.Assets.at("images/abe.png")" />
+    		</a>
+    		<a href="/father" class="main">Father
+    			<img src="@routes.Assets.at("images/homer.png")" />
+    		</a>
+    		<a href="/son" class="main">Son
+    			<img src="@routes.Assets.at("images/bart.png")" />
+    		</a>
+
     </div>
     
 }
