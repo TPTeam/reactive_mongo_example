@@ -1,0 +1,70 @@
+<html>
+<style>
+	code + span {
+		position: absolute;
+		left: 24%;
+	}
+	h2, h3 {
+		font-family: sans-serif;
+	}
+</style>
+<head>
+    <title>ReactiveMongo plugin bootstrap</title>
+</head>
+<body>
+<div>
+		<h2>Welcome!</h2>
+    <p>
+    	Congratulations! Your reactive application is ready to go.
+    	With this template, you'll get a full working asyncronous CRUD implementation for ReactiveMongo, using just few lines of
+    	code; the plugin will take care of parents' relations and will automatically update children. <br/>
+    </p>
+    
+    </p>
+	
+		<!-- some infos and papers!!! Andrea & Federico -->
+
+    <p>
+        <h3>To test the Application:
+        <ol>
+            <li>Open a terminal in your project's directory</li>
+            <li>Type <code>play run</code></li>
+            <li>Head your favourite browser to <code>http://localhost:9000/</code></li>
+            <li>Play with the family</li>
+        </ol>
+    </p>
+</div>
+<div>
+    <h2>Family's Routes</h2>
+
+    <h3>Granpas</h3>
+    <ul>
+	    <li><code>GET	    /granpa</code><span>Open the Granparents' page</span></li>
+	    <li><code>GET	    /granpa/table</code><span>Get all granpas in JSON ready to be parsed by a DataTable</span></li>
+	    <li><code>GET	    /granpa/edit/ + id</code><span>Get form for granpa with id</span></li>
+	    <li><code>GET	    /granpa/new</code><span>Get a form for creating a new granpa</span></li>
+	    <li><code>POST	  /granpa/submit</code><span>Submit the new entry!</span></li>
+    </ul>
+    
+    <h3>Fathers</h3>
+    <ul>
+	    <li><code>GET	    /father</code><span>Open the Fathers' page</span></li>
+	    <li><code>GET	    /father/table</code><span>Get all fathers in JSON ready to be parsed by a DataTable</span></li>
+	    <li><code>GET	    /father/edit/ + id</code><span>Get form for father with id, useful for editing and deleting</span></li>
+	    <li><code>GET	    /father/new</code><span>Get a form for creating a new father</span></li>
+	    <li><code>POST	  /father/submit</code><span>Submit the new entry!</span></li>
+    </ul>
+
+    <h3>Sons</h3>
+    <ul>
+	    <li><code>GET	    /son</code><span>Open the Sons' page</span></li>
+	    <li><code>GET	    /son/table</code><span>Get all sons in JSON ready to be parsed by a DataTable</span></li>
+	    <li><code>GET	    /son/edit/ + id</code><span>Get form for son with id</span></li>
+	    <li><code>GET	    /son/new</code><span>Get a form for creating a new son</span></li>
+	    <li><code>POST	  /son/submit</code><span>Submit the new entry!</span></li>
+    </ul>
+
+</div>
+
+</body>
+</html>
