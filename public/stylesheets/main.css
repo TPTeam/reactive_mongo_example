@@ -192,7 +192,7 @@ li.remove {
 	text-align: center;
 }
 #remove+label[for="remove"]:before {
-	content:"Click here to remove element";
+	content:"Click here to remove element	";
 }
 
 #remove:checked+label[for="remove"] {
