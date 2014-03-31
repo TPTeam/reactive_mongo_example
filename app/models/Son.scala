@@ -22,9 +22,6 @@ object Son extends RefPersistanceCompanion[Son] with SonPersistanceCompanion[Son
   override lazy val dbName = "reactive_uno"
   val collectionName = "sons"  
   val fatherAttName = "fa" 
-  											  
-  def findOneByUniqueString(idStr: String) = findOneByIdString(idStr)  
-  def uniqueString(obj: Son) = obj.id.stringify
   
   object SonReader extends BSONDocumentReader[Son] {
     def read(doc: BSONDocument): Son =

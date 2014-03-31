@@ -23,10 +23,7 @@ case class Father (
 object Father extends RefPersistanceCompanion[Father] with FatherPersistanceCompanion[Father,Son] with SonPersistanceCompanion[Father,GranPa]{
   
   override lazy val dbName = "reactive_due"
-  val collectionName = "fathers"
-  
-  def findOneByUniqueString(idStr: String) = findOneByIdString(idStr)  
-  def uniqueString(obj: Father) = obj.id.stringify  
+  val collectionName = "fathers" 
     
   object FatherReader extends BSONDocumentReader[Father] {
     def read(doc: BSONDocument): Father =

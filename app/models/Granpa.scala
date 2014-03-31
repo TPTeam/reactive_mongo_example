@@ -20,9 +20,6 @@ object GranPa extends RefPersistanceCompanion[GranPa] with FatherPersistanceComp
   
   override lazy val dbName = "reactive_uno"
   val collectionName = "granpas"
-  
-  def findOneByUniqueString(idStr: String) = findOneByIdString(idStr)  
-  def uniqueString(obj: GranPa) = obj.id.stringify  
     
   object GranPaReader extends BSONDocumentReader[GranPa] {
     def read(doc: BSONDocument): GranPa =
