@@ -13,15 +13,7 @@ case class Son (
     fa: Option[Reference[Father]] = None
     ) extends ModelObj(id) {
   val singleton = Son
-  
-  def updateFather(rfa: Option[Reference[Father]]) =
-    singleton._update(this.id,
-        Son(
-            this.id,
-            this.name,
-            rfa
-            )
-        )    
+     
 }
 
 
@@ -29,7 +21,11 @@ object Son extends RefPersistanceCompanion[Son] with SonPersistanceCompanion[Son
   
   override lazy val dbName = "reactive_uno"
   val collectionName = "sons"  
-    
+  val fatherAttName = "fa" 
+  											  
+  def findOneByUniqueString(idStr: String) = findOneByIdString(idStr)  
+  def uniqueString(obj: Son) = obj.id.stringify
+  
   object SonReader extends BSONDocumentReader[Son] {
     def read(doc: BSONDocument): Son =
       Son(
@@ -52,36 +48,20 @@ object Son extends RefPersistanceCompanion[Son] with SonPersistanceCompanion[Son
   
   implicit val writer = SonWriter
   
-   def referenceChanged = (ogp, rel) => {
+   def referenceChanged(ogp: Option[Reference[Father]], rel: Reference[Son]): Future[Boolean] = {
     (ogp) match {
       case None => //Delete
         delete(rel.id)
       case Some(fa) => //Update or nothing
-        (for {
-          g <- findOneById(rel.id) 
-        } yield 
-        g.map(x => {
-        	x.updateFather(ogp)
-        })).map(o =>
-          o match  {
-            case Some(_) =>  true
-            case _ => false
-          })   
+        updateFather(rel,fa)
     } 
   }    
-  
+   
   val FatherPC = Father 
    
   override def getFather(obj: Son) = {
 	  obj.fa
   }	
-  /*
-  override def delete(id: BSONObjectID) = {
-      for {
-        fa <- Father.findOneById(id)
-      } yield Father.removeFrom(List(new Reference[Son](id)), fa.get)
-	 super.delete(id)
-  }*/
   
   override def _update(id: BSONObjectID, obj: Son) = { 
 	  super._update(id,obj)

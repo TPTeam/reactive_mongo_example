@@ -18,16 +18,6 @@ case class Father (
   
   val singleton = Father
   
-  def updateGranpa(rgp: Option[Reference[GranPa]]) = {
-    singleton._update(this.id,
-        Father(
-            this.id,
-            this.name,
-            rgp,
-            this.sons
-            )
-        )
-  }
 }
 
 object Father extends RefPersistanceCompanion[Father] with FatherPersistanceCompanion[Father,Son] with SonPersistanceCompanion[Father,GranPa]{
@@ -35,6 +25,9 @@ object Father extends RefPersistanceCompanion[Father] with FatherPersistanceComp
   override lazy val dbName = "reactive_due"
   val collectionName = "fathers"
   
+  def findOneByUniqueString(idStr: String) = findOneByIdString(idStr)  
+  def uniqueString(obj: Father) = obj.id.stringify  
+    
   object FatherReader extends BSONDocumentReader[Father] {
     def read(doc: BSONDocument): Father =
       Father(
@@ -59,7 +52,9 @@ object Father extends RefPersistanceCompanion[Father] with FatherPersistanceComp
   
   val FatherPC = GranPa
   val CHILD = Son
-  
+  val sonsAttName = "sons"
+  val fatherAttName = "gp"
+    
   override def getFather(obj: Father) = {
     obj.gp
   }	
@@ -67,74 +62,25 @@ object Father extends RefPersistanceCompanion[Father] with FatherPersistanceComp
   override def getSons(obj: Father) = {
     obj.sons
   }
-  
-  def removeFrom(toBeRemoved: List[Reference[Son]], from: List[Father]): Future[Boolean] = {    
-    // remove from any father every link to parents toBeRemoved
-    val res = from.map(_ => Promise[Boolean])
- 
-    for ( fa <- from.zipWithIndex) {
-        val newSons = fa._1.sons.filterNot(e => toBeRemoved.contains(e))
-        if (newSons.length!=fa._1.sons.length) {
-          _update(fa._1.id,
-              Father(
-                  fa._1.id,
-                  fa._1.name,
-                  fa._1.gp,
-                  newSons
-                  )
-              ).map {
-                  case _ => res(fa._2).trySuccess(true)
-          	}
-        } else {
-          res(fa._2).trySuccess(true)
-        }
-      }
-    val r = res.map(x => x.future)
-
-    val re = Future.fold(r)(true)((i, l) => l)
-
-    re
-  }
-  
 
   override def _update(id: BSONObjectID, obj: Father) = { 
 	  super._update(id,obj)
    }
  
-  
-  def addTo(toBeAdded: List[Reference[Son]], to: Father): Future[Boolean] = {
-	val newSons = to.sons.filterNot(e => toBeAdded.contains(e))
-    val res = Promise[Boolean]
-	_update(to.id,
-            Father(
-                to.id,
-                to.name,
-                to.gp,
-                newSons ++ toBeAdded
-                )
-        ).onComplete{
-	  case _ => res.trySuccess(true)
-	}
-    res.future
-  }
-    
-  
-  def referenceChanged = (ogp, rel) => {
+  def referenceChanged(ogp: Option[Reference[GranPa]], rel: Reference[Father]): Future[Boolean] = {
     (ogp) match {
       case None => //Delete
         delete(rel.id)
-      case Some(gp) => //Update or nothing
-        (for {
-          g <- findOneById(rel.id) 
-        } yield 
-        g.map(x => {
-        	x.updateGranpa(Some(gp))
-        })).map(o =>
-          o match  {
-            case Some(_) =>  true
-            case _ => false
-          })   
+      case Some(fa) => //Update or nothing
+        updateFather(rel,fa)
     } 
-  }
+  } 
   
+  def removeFrom(toBeRemoved: List[Reference[Son]], from: List[Reference[Father]]): Future[Boolean] = 
+    cleanChildren(toBeRemoved,from)
+  
+  def addTo(toBeAdded: List[Reference[Son]], to: Reference[Father]): Future[Boolean] = 
+	addChildren(toBeAdded, to)
+  
+
 }

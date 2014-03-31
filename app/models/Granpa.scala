@@ -20,7 +20,10 @@ object GranPa extends RefPersistanceCompanion[GranPa] with FatherPersistanceComp
   
   override lazy val dbName = "reactive_uno"
   val collectionName = "granpas"
-   
+  
+  def findOneByUniqueString(idStr: String) = findOneByIdString(idStr)  
+  def uniqueString(obj: GranPa) = obj.id.stringify  
+    
   object GranPaReader extends BSONDocumentReader[GranPa] {
     def read(doc: BSONDocument): GranPa =
       GranPa(
@@ -43,7 +46,7 @@ object GranPa extends RefPersistanceCompanion[GranPa] with FatherPersistanceComp
   implicit val writer = GranPaWriter
   
   val CHILD = Father
-  
+  val sonsAttName = "sons"
   override def getSons(obj: GranPa) = {
     obj.sons
   }
@@ -54,47 +57,10 @@ object GranPa extends RefPersistanceCompanion[GranPa] with FatherPersistanceComp
     }
 
   
-  def removeFrom(toBeRemoved: List[Reference[Father]], from: List[GranPa]): Future[Boolean] = { 
-    // remove from any father every link to parents toBeRemoved
-    val res = from.map(_ => Promise[Boolean])
- 
-    for ( gp <- from.zipWithIndex) {
-        val newSons = gp._1.sons.filterNot(e => toBeRemoved.contains(e))
-        if (newSons.length!=gp._1.sons.length) {
-          _update(gp._1.id,
-              GranPa(
-                  gp._1.id,
-                  gp._1.name,
-                  newSons
-                  )
-              ).map {
-                  case _ => res(gp._2).trySuccess(true)
-          	}
-        } else {
-          res(gp._2).trySuccess(true)
-        }
-      }
-    val r = res.map(x => x.future)
-
-    val re = Future.fold(r)(true)((i, l) => l)
-
-    re
-  }
+  def removeFrom(toBeRemoved: List[Reference[Father]], from: List[Reference[GranPa]]): Future[Boolean] = 
+    cleanChildren(toBeRemoved,from)
   
-  
-def addTo(toBeAdded: List[Reference[Father]], to: GranPa): Future[Boolean] = {
-	val newSons = to.sons.filterNot(e => toBeAdded.contains(e))
-    val res = Promise[Boolean]
-	_update(to.id,
-                GranPa(
-                  to.id,
-                  to.name,
-                  newSons ++ toBeAdded
-                )
-        ).onComplete{
-	  case _ => res.trySuccess(true)
-	}
-    res.future
-  }
+  def addTo(toBeAdded: List[Reference[Father]], to: Reference[GranPa]): Future[Boolean] = 
+	addChildren(toBeAdded, to)
   
 }
