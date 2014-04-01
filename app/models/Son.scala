@@ -48,7 +48,7 @@ object Son extends RefPersistanceCompanion[Son] with SonPersistanceCompanion[Son
    def referenceChanged(ogp: Option[Reference[Father]], rel: Reference[Son]): Future[Boolean] = {
     (ogp) match {
       case None => //Delete
-        delete(rel.id)
+        super._delete(rel.id)
       case Some(fa) => //Update or nothing
         updateFather(rel,fa)
     } 
