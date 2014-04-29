@@ -94,7 +94,7 @@ object FatherController extends Controller with TablePager[Father] with CRUDer[F
                 Await.result(
             		  Father.create(
             		      faht
-            		      ), 3 seconds)
+            		      ), 300 seconds)
                 Await.result(
             		   Father.findOneById(faht.id).map(_.get), 3 seconds)
             }
