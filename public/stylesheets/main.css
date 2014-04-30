@@ -17,9 +17,10 @@ body {
 	background: -o-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
 	background: -ms-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
 	background: linear-gradient(to bottom, #FFFFFD 0%, #E1D3B2 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(  
+	filter: progid:DXImageTransform.Microsoft.gradient(        
 		                     startColorstr='#eeeeee', endColorstr='#cccccc',
 		GradientType=0);
+	background: linear-gradient(to bottom, #FBE25E 0%, #FBE888 100%);
 	height: 100%;
 }
 
@@ -41,9 +42,12 @@ ul.menu {
 	height: 8%;
 	margin: 0;
 	display: inline-block;
-	background: #F5F5F5;
+	/* 	background: #F5F5F5; */
+	background: transparent;
 	position: relative;
 	display: inline-flex;
+	margin-bottom: 2%;
+	position: relative;
 }
 
 ul.menu>a {
@@ -66,7 +70,8 @@ li,a.main {
 	margin-top: 2%;
 	display: block;
 	/* 	background: whitesmoke; */
-	background: #FFC0A5;
+	/* 	background: #FFC0A5; */
+	background: #fff;
 	box-shadow: 1px 01px 2px grey;
 	position: relative;
 }
@@ -97,18 +102,27 @@ a {
 	font-size: 1.2em;
 }
 
-td a {
-	color: #F35252;
+td>a,td>a:hover {
+	/* 	color: #F35252; */
+	color: #0E276C;
 	font-weight: normal;
 	font-size: 1em;
+	background: transparent;
+}
+
+td>a:hover {
+	text-shadow: 1px 1px 0px #fff;
+	font-weight: bold;
 }
 
 li:hover a,a:hover {
 	color: #FFCD8E;
-	background: #575757;
-	text-shadow: 1px 0px 2px #000;
-	color: #FFCD8E;
+	background: #2B4CA6;
+	text-shadow: 1px 1px 0px #000;
+	color: #F7D629;
 	box-shadow: -1px -1px 2px inset black;
+	text-shadow: 1px 1px 0px #000;
+	color: #F7D629;
 }
 
 label {
@@ -126,6 +140,18 @@ dd,dt {
 	display: inline-block;
 }
 
+dd {
+	width: 50%;
+}
+
+dl#sons_field>dd {
+	width: 70%;
+}
+
+input {
+	width: 100%;
+}
+
 dt {
 	min-width: 20%;
 }
@@ -134,6 +160,7 @@ dt {
 	margin: auto;
 	height: 90%;
 	width: 76%;
+	position: relative;
 }
 
 .centered.main {
@@ -145,6 +172,9 @@ dt {
 	font-size: 0.8em;
 	color: #BE0000;
 	font-style: italic;
+	width: auto;
+	text-align: right;
+	float: right;
 }
 
 input[type="submit"] {
@@ -165,6 +195,10 @@ table.dataTable tr.even td.sorting_1 {
 
 table.dataTable tr.odd td.sorting_1 {
 	background-color: #D8E9D7;
+}
+
+tr:hover>td>a {
+	font-weight: bold;
 }
 
 .dataTables_wrapper {
@@ -191,8 +225,9 @@ li.remove {
 	padding-top: 2%;
 	text-align: center;
 }
+
 #remove+label[for="remove"]:before {
-	content:"Click here to remove element	";
+	content: "Click here to remove element	";
 }
 
 #remove:checked+label[for="remove"] {
@@ -204,7 +239,32 @@ li.remove {
 	color: #FFF;
 	padding-top: 2%;
 }
-#remove:checked+label[for="remove"]:before {
-	content:"Element will be REMOVED!";
 
-	}
+#remove:checked+label[for="remove"]:before {
+	content: "Element will be REMOVED!";
+}
+
+.centered.form>img {
+	width: 20%;
+	position: absolute;
+	right: -20%;
+	top: 0;
+/* 	margin-top */
+}
+
+form {
+	padding-top: 2%;
+}
+
+label.little {
+	font-style: italic;
+	font-size: 80%;
+}
+
+table.dataTable tr.odd td.sorting_1 {
+	background-color: #D8E3FF;
+}
+
+table.dataTable tr.even td.sorting_1 {
+	background-color: #EAF4FF;
+}

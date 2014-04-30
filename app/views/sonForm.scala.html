@@ -2,6 +2,10 @@
 
 @import helper._
 
+<div class="centered">
+	@navigator()
+</ul>
+
 @helper.form(action = new play.api.mvc.Call("POST",paths.submit)) {
 	
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
@@ -17,16 +21,17 @@
 	    	</li>
 	    	<li>
 	    		@helper.inputText(gpform("fa"))
-	    		<label>Insert Id</label>
+	    		<label for="fa_field" class="little">Insert Id</label>
 	    	</li>
-	    	<li>
-	    		<label>Remove element</label>
-	    		<input type="checkbox" name="remove" />
+	    	<li class="remove">
+	    		<input id="remove" type="checkbox" name="remove" />
+	    		<label for="remove"></label>
 	    	</li>
 	    </ul>
 	    
 	    <input type="submit" />
 	    
+     	<img src="@routes.Assets.at("images/bart.png")" />
     </div>
     
 }

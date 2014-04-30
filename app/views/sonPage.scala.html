@@ -3,27 +3,15 @@
 @main("Son - Page") {
 	
 	<div class="centered">
-	 <ul class="menu">
-		 <li>
-		    <a href="/granpa">Granpa</a>
-		 </li>
-		 <li>
-		    <a href="/father">Father</a>
-		 </li>
-		 <li>
-			<a href="/son">Son</a>
-		</li>
-	</ul>
+	 @navigator()
 	
 	<div>
-		 <ul>
-	    	<li>
-				<a href="@paths.create">
-					<h3>Create New</h3>
-				</a>
-			</li>
-		</ul>					
-	</div>
+			 <ul>
+					<a href="@paths.create" class="main">
+						<h3>Create New SON!</h3>
+					</a>
+			</ul>					
+		</div>
 	
 	<table id="son_table">
 	<thead>

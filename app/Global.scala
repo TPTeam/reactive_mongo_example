@@ -110,15 +110,6 @@ object Global extends GlobalSettings {
             fa = Some(f(0))
             ) 
 
-//    Await.result(Son.create(son1), 4 seconds)    
-//    Await.result(Son.create(son2), 4 seconds)         
-//    Await.result(Son.create(son3), 4 seconds)         
-//    Await.result(Son.create(son4), 4 seconds)         
-//    Await.result(Son.create(son5), 4 seconds)         
-//    Await.result(Son.create(son6), 4 seconds)         
-//    Await.result(Son.create(son7), 4 seconds)         
-//    Await.result(Son.create(son8), 4 seconds)         
-//    Await.result(Son.create(son9), 4 seconds)      
        
        Son.create(son1)   
     Son.create(son2)         
@@ -131,118 +122,6 @@ object Global extends GlobalSettings {
     Son.create(son9)     
             
       }
-       
-       // println("4- END!!!!!")    
-//    Await.result({
-//    Father.create(father1)        
-//    Father.create(father2)
-//    Father.create(father3)        
-//    Father.create(father4)
-//    Father.create(father5)        
-//    Father.create(father6)}, 3 seconds)
-//        
-//    for{
-//      f1 <- Father.findOneById(father1.id)
-//      f2 <- Father.findOneById(father2.id)
-//      f3 <- Father.findOneById(father3.id)
-//      f4 <- Father.findOneById(father4.id)
-//      f5 <- Father.findOneById(father5.id)
-//      f6 <- Father.findOneById(father6.id)
-//    }yield{
-//      
-//       val son1 = Son(
-//            name = "son1",
-//            fa = Some(Reference[Father](f1.get.id))
-//            )
-//    val son2 = Son(
-//            name = "son2",
-//            fa = Some(Reference[Father](f2.get.id))
-//            )
-//    val son3 = Son(
-//            name = "son3",
-//            fa = Some(Reference[Father](f3.get.id))
-//            )
-//    
-//    val son4 = Son(
-//            name = "son4",
-//            fa = Some(Reference[Father](f4.get.id))
-//            )
-//    val son5 = Son(
-//            name = "son5",
-//            fa = Some(Reference[Father](f5.get.id))
-//            )
-//    val son6 = Son(
-//            name = "son6",
-//            fa = Some(Reference[Father](f6.get.id))
-//            )     
-//            
-//    val son7 = Son(
-//            name = "son7",
-//            fa = Some(Reference[Father](f1.get.id))
-//            )
-//    val son8 = Son(
-//            name = "son8",
-//            fa = Some(Reference[Father](f2.get.id))
-//            )
-//    val son9 = Son(
-//            name = "son9",
-//            fa = Some(Reference[Father](f3.get.id))
-//            ) 
-//    Await.result({        
-//    Son.create(son1)   
-//    Son.create(son2)        
-//    Son.create(son3)        
-//    Son.create(son4)        
-//    Son.create(son5)        
-//    Son.create(son6)        
-//    Son.create(son7)        
-//    Son.create(son8)        
-//    Son.create(son9)}, 3 seconds)        
-//      
-//    }
-//    
-//     
-//   }  
-//            
-//    /*
-//    val father = Father(
-//            name = "papa1"
-//            )
-//    import Father._
-//    val son = Son(
-//        name = "qui",
-//        fa = Some(father)
-//        )
-//   
-//   Father.create(father)
-//   Son.create(son)
-//      */
-//   /*
-//    Son.create{
-//      Son(
-//          name = "proviamo1")
-//    }
-//    Father.create(
-//        Father(
-//            name = "papa1"
-//            )
-//        )
-//    Son.create{
-//      Son(
-//          name = "proviamo2")
-//    }
-//    Father.create(
-//        Father(
-//            name = "papa2"
-//            )
-//        )*/
-//   
-//   /*
-//    println("QUI!!! "+
-//    		MongoDBsConnector.dbs.size
-//    )*/
-//  }
-//
 
 }
 }

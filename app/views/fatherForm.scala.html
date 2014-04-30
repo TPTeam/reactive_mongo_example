@@ -2,33 +2,38 @@
 
 @import helper._
 
+<div class="centered">
+	@navigator()
+</ul>
+
 @helper.form(action = new play.api.mvc.Call("POST",paths.submit)) {
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
      <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
      <div class="centered form">
      
-    <ul>
-    	<li>
-    		@inputText(faform("id"))
-    	</li>
-    	<li>
-    		@inputText(faform("name"))
-    	</li>
-    	<li>
-    		@inputText(faform("gp"))
-    		<label>Insert Id</label>
-    	</li>
-    	<li>
-    		@inputText(faform("sons"))
-    		<label>Please, insert elements like a JSON array (i.e. ["526f9c77e4b083eec04dee31", "526e9709e4b054fb03a1574c"])</label>
-    	</li>
-    	<li>
-    		<label>Remove element</label>
-    		<input type="checkbox" name="remove" />
-    	</li>
+	    <ul>
+	    	<li>
+	    		@inputText(faform("id"))
+	    	</li>
+	    	<li>
+	    		@inputText(faform("name"))
+	    	</li>
+	    	<li>
+	    		@inputText(faform("gp"))
+	    		<label for="gp_field" class="little">Insert Id</label>
+	    	</li>
+	    	<li>
+	    		@inputText(faform("sons"))
+	    		<label for="sons_field" class="little">Please, insert elements like a JSON array (i.e. ["526f9c77e4b083eec04dee31", "526e9709e4b054fb03a1574c"])</label>
+	    	</li>
+	    	<li class="remove">
+	    		<input id="remove" type="checkbox" name="remove" />
+	    		<label for="remove"></label>
+	    	</li>
+	    
+	    </ul>
     
-    </ul>
-    
-    <input type="submit" />
+    	<input type="submit" />
+     	<img src="@routes.Assets.at("images/homer.png")" />
     </div>
 }
