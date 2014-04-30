@@ -9,7 +9,7 @@ import scala.concurrent.duration._
 object Global extends GlobalSettings {
 
   override def onStart(app: Application) {
-	  println("1- GRANPA!!!!!")
+	  //println("1- GRANPA!!!!!")
     val granPa1 = GranPa(
     		id= BSONObjectID.generate,
             name = "granpa1"
@@ -25,7 +25,7 @@ object Global extends GlobalSettings {
     Await.result(GranPa.create(granPa1), 3 seconds)  
     Await.result(GranPa.create(granPa2), 3 seconds)        
     Await.result(GranPa.create(granPa3), 3 seconds)
-    println("2- FATHER!!!!!")
+    //println("2- FATHER!!!!!")
     Await.result( 
     for{
       gp <- GranPa.findAll.collect[List]()
@@ -67,7 +67,7 @@ object Global extends GlobalSettings {
     Await.result(Father.create(father4), 4 seconds)
     Await.result(Father.create(father5), 4 seconds)
     }, 7 seconds)
-    println("3- SON!!!!!")    
+    //println("3- SON!!!!!")    
       for{
         f <- Father.findAll.collect[List]()
       }yield{
@@ -132,7 +132,7 @@ object Global extends GlobalSettings {
             
       }
        
-        println("4- END!!!!!")    
+       // println("4- END!!!!!")    
 //    Await.result({
 //    Father.create(father1)        
 //    Father.create(father2)
