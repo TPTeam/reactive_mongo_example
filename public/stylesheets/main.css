@@ -9,18 +9,17 @@ body {
 	margin: 0;
 	height: 100%;
 	width: 100%;
-	background: #eeeeee;
-	background: -moz-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee),
-		color-stop(100%, #cccccc));
-	background: -webkit-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
-	background: -o-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
-	background: -ms-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
-	background: linear-gradient(to bottom, #FFFFFD 0%, #E1D3B2 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(        
-		                     startColorstr='#eeeeee', endColorstr='#cccccc',
-		GradientType=0);
+	background: #FBE25E;
+	background: -moz-linear-gradient(top, #FBE25E 0%, #FBE888 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FBE25E),
+		color-stop(100%, #FBE888));
+	background: -webkit-linear-gradient(top, #FBE25E 0%, #FBE888 100%);
+	background: -o-linear-gradient(top, #FBE25E 0%, #FBE888 100%);
+	background: -ms-linear-gradient(top, #FBE25E 0%, #FBE888 100%);
 	background: linear-gradient(to bottom, #FBE25E 0%, #FBE888 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(        
+		                     startColorstr='#FBE25E', endColorstr='#FBE888',
+		GradientType=0);
 	height: 100%;
 }
 
