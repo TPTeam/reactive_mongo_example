@@ -1,8 +1,8 @@
-reactive_mongo_example
+Reactive Mongo Example
 ======================
 
-ReactiveMongo plugin bootstrap
-------------------------------
+A simple ReactiveMongo plugin bootstrap
+---------------------------------------
 
 This example shows a fully working application using [ReactiveMongoCrud plugin](https://github.com/TPTeam/reactive_mongo_crud) for Play Framework.
 With this template, you'll get a full working asyncronous CRUD implementation for ReactiveMongo, using just few lines of code; the plugin will take care of parents' relations and will automatically update children.
