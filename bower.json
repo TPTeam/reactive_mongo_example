@@ -1,0 +1,10 @@
+{
+  "name": "hello-play",
+  "version": "0.0.0",
+  "dependencies": {
+    "backbone": "~1.1.0",
+    "underscore": "~1.5.0",
+    "jquery": "~2.0.0",
+    "backbone.localStorage": "~1.1.0"
+  }
+}
