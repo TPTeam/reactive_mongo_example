@@ -44,3 +44,6 @@ Moreover, the plugin let you use multiple databases for different collections ef
 * [Zengularity](http://zengularity.fr)
 * [DataTable jQury plugin](https://datatables.net/)
 * [SimpsonCrazy for the wonderful](images http://www.simpsoncrazy.com/)
+
+##Notes
+Also available as [Typesafe Activator Template](https://typesafe.com/activator/template/play-reactive-mongo).
