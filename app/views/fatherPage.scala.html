@@ -1,4 +1,4 @@
-@()(implicit paths: controllers.CRUDerPaths)
+@(BUG: Boolean = false)(implicit paths: controllers.helper.CRUDerPaths)
 
 @main("Father - Page") {
 	<div class="centered">
@@ -36,16 +36,20 @@
 				"bAutoWidth" : false,
 				"aaSorting" : [ [ 1, "asc" ] ],
 				"fnRowCallback" : function(nRow, aData, iDisplayIndex) {
-					$('td:eq(0)', nRow).html('<a href="@paths.edit/' + aData[0] + '">' + aData[1] + '</a>');
+					$('td:eq(0)', nRow).html('<a href="@paths.edit/' + aData[0] + '">' + aData[0] + '</a>');
 					return nRow;
 				},
 				"bServerSide" : true,
 				"bJQueryUI" : true,
 				"bRetrieve" : true,
+				@if(BUG){
+				"sAjaxSource" : "@routes.FatherNoStringsController.table()",
+				}else{
 				"sAjaxSource" : "@routes.FatherController.table()",
+				}
 				"aoColumnDefs" : [ {
 					"bSearchable" : false,
-					"bVisible" : false,
+					//"bVisible" : false,
 					"aTargets" : [ 0 ]
 				}, {
 					"sWidth" : "20%",

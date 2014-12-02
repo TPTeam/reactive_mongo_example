@@ -3,22 +3,26 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET   /                        controllers.Application.index
 
 #GranPa
-GET	    /granpa						 					 controllers.GranpaController.index
-->      /granpa					 						 controllers.GranpaController
-GET     /granpa/table                                    controllers.GranpaController.table
+GET   /granpa                  controllers.GrandpaController.index
+->    /granpa                  controllers.GrandpaController
+GET   /granpa/table            controllers.GrandpaController.table
 
 #Father
-GET		/father						 					 controllers.FatherController.index
-->    	/father					 						 controllers.FatherController
-GET     /father/table                                    controllers.FatherController.table
+GET   /father                  controllers.FatherController.index
+->    /father                  controllers.FatherController
+GET   /father/table            controllers.FatherController.table
+#bug here
+GET   /fatherNoStrings         controllers.FatherNoStringsController.index
+->    /fatherNoStrings         controllers.FatherNoStringsController
+GET   /fatherNoStrings/table   controllers.FatherNoStringsController.table
 
 #Son
-GET		/son						 					 controllers.SonController.index
-->		/son											 controllers.SonController
-GET     /son/table                                       controllers.SonController.table
+GET   /son                     controllers.SonController.index
+->    /son                     controllers.SonController
+GET   /son/table               controllers.SonController.table
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET   /assets/*file            controllers.Assets.at(path="/public", file)

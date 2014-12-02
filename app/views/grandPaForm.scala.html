@@ -1,4 +1,4 @@
-@(gpform: Form[models.Son])(implicit request: RequestHeader, paths: controllers.helper.CRUDerPaths)
+@(gpform: Form[models.GrandPa])(implicit request: RequestHeader, paths: controllers.helper.CRUDerPaths)
 
 @import helper._
 
@@ -7,31 +7,29 @@
 </ul>
 
 @helper.form(action = new play.api.mvc.Call("POST",paths.submit)) {
-	
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
      <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-     <div class="centered form">
      
+     <div class="centered form">
 	    <ul>
 	    	<li>
-	    		@helper.inputText(gpform("id"))
+	    		@inputText(gpform("id"))
 	    	</li>
 	    	<li>
-	    		@helper.inputText(gpform("name"))
+	    		@inputText(gpform("name"))
 	    	</li>
 	    	<li>
-	    		@helper.inputText(gpform("fa"))
-	    		<label for="fa_field" class="little">Insert Id</label>
+	    		@inputText(gpform("sons"))
+	    		<label for="sons_field" class="little">Please, insert elements like a JSON array (i.e. ["526f9c77e4b083eec04dee31", "526e9709e4b054fb03a1574c"])</label>
 	    	</li>
 	    	<li class="remove">
 	    		<input id="remove" type="checkbox" name="remove" />
 	    		<label for="remove"></label>
 	    	</li>
+	    
 	    </ul>
 	    
 	    <input type="submit" />
-	    
-     	<img src="@routes.Assets.at("images/bart.png")" />
+     	<img src="@routes.Assets.at("images/abe.png")" />
     </div>
-    
 }

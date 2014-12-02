@@ -5,10 +5,10 @@ import play.api.mvc._
 import models._
 import play.api.data._
 import play.api.data.Forms._
-import play.api.libs.concurrent.Akka
-import play.api.Play.current
-import play.api.libs.json._
 import play.api.data.format.Formats._
+import play.api.Play.current
+import play.api.libs.concurrent.Akka
+import play.api.libs.json._
 import play.api.libs.concurrent.Execution.Implicits._
 import controllerhelper._
 import tp_utils.Tryer._
@@ -17,6 +17,7 @@ import scala.language.reflectiveCalls
 import scala.concurrent._
 import scala.concurrent.duration._
 import scala.language.postfixOps
+import controllers.helper.{TablePager, CRUDer}
 
 object SonController extends Controller with TablePager[Son] with CRUDer[Son] {  
   

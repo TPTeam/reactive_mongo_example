@@ -19,21 +19,21 @@ import scala.concurrent.duration._
 import scala.language.postfixOps
 import controllers.helper.{TablePager, CRUDer}
 
-object FatherController extends Controller with TablePager[Father] with CRUDer[Father] {  
+object FatherNoStringsController extends Controller with TablePager[Father] with CRUDer[Father] {  
   
   def index = 
     Action {	
 	  implicit request =>  
-	  	Ok(views.html.fatherPage())
+	  	Ok(views.html.fatherPage(true))
   	}
   
   val singleton = Father
-  
+    
   def elemValues(fa: Father) =
     Seq(fa.id.stringify,fa.name)
     
   override val elemsToDisplay = 
-    Seq("id","name")
+    Seq("id"/*,"name"*/)
     
   def formTemplate(formgp: Form[Father])(implicit request: RequestHeader): play.api.templates.Html =
     views.html.fatherForm(formgp)

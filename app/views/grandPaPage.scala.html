@@ -1,37 +1,36 @@
 @()(implicit paths: controllers.helper.CRUDerPaths)
 
-@main("Son - Page") {
+@main("GranPa - Page") {
 	
 	<div class="centered">
-	 @navigator()
-	
-	<div>
+		@navigator()
+		
+		<div>
 			 <ul>
 					<a href="@paths.create" class="main">
-						<h3>Create New SON!</h3>
+						<h3>Create New GRANPA!</h3>
 					</a>
 			</ul>					
 		</div>
-	
-	<table id="son_table">
-	<thead>
-		<tr>
-			<th>id</th>
-			<th>name</th>
-		</tr>
-	</thead>
-	<tbody></tbody>
-	</table>
-	
-	</div>
-	</div>
-	<script>
 		
+		<table id="granpa_table">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>name</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+		</table>
+		
+	</div>
+
+	<script>
 		$(document).ready(function() {
 
 			//Using dataTable (jQuery plugin: http://datatables.net/)
-
-			oTable = $("#son_table").dataTable({
+			
+			oTable = $("#granpa_table").dataTable({
 
 				"iDisplayLength" : 20,
 				"bProcessing" : true,
@@ -44,7 +43,7 @@
 				"bServerSide" : true,
 				"bJQueryUI" : true,
 				"bRetrieve" : true,
-				"sAjaxSource" : "@routes.SonController.table()",
+				"sAjaxSource" : "@routes.GrandpaController.table()",
 				"aoColumnDefs" : [ {
 					"bSearchable" : false,
 					//"bVisible" : false,
@@ -57,7 +56,6 @@
 			});
 
 		})
-	
 	</script>
 	
 }

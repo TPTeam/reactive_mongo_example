@@ -9,26 +9,26 @@ import scala.concurrent.duration._
 object Global extends GlobalSettings {
 
   override def onStart(app: Application) {
-	  //println("1- GRANPA!!!!!")
-    val granPa1 = GranPa(
+	  //println("1- GrandPa!!!!!")
+    val GrandPa1 = GrandPa(
     		id= BSONObjectID.generate,
-            name = "granpa1"
+            name = "GrandPa1"
             )           
-    val granPa2 = GranPa(
+    val GrandPa2 = GrandPa(
             id= BSONObjectID.generate,
-            name = "granpa2"
+            name = "GrandPa2"
             )           
-    val granPa3 = GranPa(
+    val GrandPa3 = GrandPa(
             id= BSONObjectID.generate,
-            name = "granpa3"
+            name = "GrandPa3"
             )  
-    Await.result(GranPa.create(granPa1), 3 seconds)  
-    Await.result(GranPa.create(granPa2), 3 seconds)        
-    Await.result(GranPa.create(granPa3), 3 seconds)
+    Await.result(GrandPa.create(GrandPa1), 3 seconds)  
+    Await.result(GrandPa.create(GrandPa2), 3 seconds)        
+    Await.result(GrandPa.create(GrandPa3), 3 seconds)
     //println("2- FATHER!!!!!")
     Await.result( 
     for{
-      gp <- GranPa.findAll.collect[List]()
+      gp <- GrandPa.findAll.collect[List]()
     }yield{
 
     val father1 = Father(

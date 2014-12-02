@@ -17,25 +17,26 @@ import scala.language.reflectiveCalls
 import scala.concurrent._
 import scala.concurrent.duration._
 import scala.language.postfixOps
+import controllers.helper.{TablePager, CRUDer}
 
-object GranpaController extends Controller with TablePager[GranPa] with CRUDer[GranPa] {  
+object GrandpaController extends Controller with TablePager[GrandPa] with CRUDer[GrandPa] {  
   
   def index = 
     Action {	
 	  implicit request =>
-	  	Ok(views.html.granPaPage())
+	  	Ok(views.html.grandPaPage())
   	}
   
-  val singleton = GranPa
+  val singleton = GrandPa
   
-  def elemValues(gp: GranPa) =
+  def elemValues(gp: GrandPa) =
     Seq(gp.id.stringify,gp.name)
     
   override val elemsToDisplay = 
     Seq("id","name")
     
-  def formTemplate(formgp: Form[GranPa])(implicit request: RequestHeader): play.api.templates.Html =
-    views.html.granPaForm(formgp)
+  def formTemplate(formgp: Form[GrandPa])(implicit request: RequestHeader): play.api.templates.Html =
+    views.html.grandPaForm(formgp)
     
   def tryChilds(_sons: String): Future[List[Option[Reference[Father]]]] = {
     Future.traverse(
@@ -69,26 +70,26 @@ object GranpaController extends Controller with TablePager[GranPa] with CRUDer[G
               })) match {
               case Some(oid) => //UPDATE
                 	Await.result(
-                	  GranPa.update(oid,
-            		      GranPa(
+                	  GrandPa.update(oid,
+            		      GrandPa(
             		          id = oid,
             		          name = name,
             		          sons = sons
             		      )
             		   ), 3 seconds)
             		 Await.result(
-            		   GranPa.findOneById(oid), 3 seconds).get
+            		   GrandPa.findOneById(oid), 3 seconds).get
               case _ => //CREATE
-                val gp = GranPa(
+                val gp = GrandPa(
             		          name = name,
             		          sons = sons
             		          )
             		Await.result(
-            		  GranPa.create(
+            		  GrandPa.create(
             		      gp
             		      ), 3 seconds)
             		  Await.result(
-            		   GranPa.findOneById(gp.id), 3 seconds).get
+            		   GrandPa.findOneById(gp.id), 3 seconds).get
             }
           }
       }{gp => {

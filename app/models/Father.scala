@@ -12,7 +12,7 @@ import scala.language.postfixOps
 case class Father (
     id: BSONObjectID = BSONObjectID.generate,
     name: String,
-    gp: Option[Reference[GranPa]] = None,
+    gp: Option[Reference[GrandPa]] = None,
     sons: List[Reference[Son]] = List()
     ) extends ModelObj(id) {
   
@@ -20,7 +20,7 @@ case class Father (
   
 }
 
-object Father extends RefPersistanceCompanion[Father] with FatherPersistanceCompanion[Father,Son] with SonPersistanceCompanion[Father,GranPa]{
+object Father extends RefPersistanceCompanion[Father] with FatherPersistanceCompanion[Father,Son] with SonPersistanceCompanion[Father,GrandPa]{
   
   override lazy val dbName = "reactive_due"
   val collectionName = "fathers" 
@@ -30,7 +30,7 @@ object Father extends RefPersistanceCompanion[Father] with FatherPersistanceComp
       Father(
         doc.getAs[BSONObjectID]("_id").get,
         doc.getAs[String]("name").get,
-        doc.getAs[Reference[GranPa]]("gp"),
+        doc.getAs[Reference[GrandPa]]("gp"),
         doc.getAs[List[Reference[Son]]]("sons").getOrElse(List())
         )
   }
@@ -47,7 +47,7 @@ object Father extends RefPersistanceCompanion[Father] with FatherPersistanceComp
   }
   implicit val writer = FatherWriter
   
-  val FatherPC = GranPa
+  val FatherPC = GrandPa
   val CHILD = Son
   val sonsAttName = "sons"
   val fatherAttName = "gp"
@@ -64,7 +64,7 @@ object Father extends RefPersistanceCompanion[Father] with FatherPersistanceComp
 	  super._update(id,obj)
    }
  
-  def referenceChanged(ogp: Option[Reference[GranPa]], rel: Reference[Father]): Future[Boolean] = {
+  def referenceChanged(ogp: Option[Reference[GrandPa]], rel: Reference[Father]): Future[Boolean] = {
     (ogp) match {
       case None => //Delete
         delete(rel.id)
