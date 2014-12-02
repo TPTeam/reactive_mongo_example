@@ -1,50 +1,48 @@
-@()(implicit paths: controllers.helper.CRUDerPaths)
+@* familyTable Template File *@
+@(name: String, table: play.mvc.Call, elemsToDisplay: Seq[String])(implicit paths: controllers.helper.CRUDerPaths)
 
-@main("Son - Page") {
-	
+@main(s"${name} - Page") {
 	<div class="centered">
-	 @navigator()
+		@navigator()
 	
 	<div>
 			 <ul>
 					<a href="@paths.create" class="main">
-						<h3>Create New SON!</h3>
+						<h3>Create New @name</h3>
 					</a>
 			</ul>					
 		</div>
 	
-	<table id="son_table">
+	<table id="@name">
 	<thead>
 		<tr>
-			<th>id</th>
-			<th>name</th>
+			@elemsToDisplay.map(h => <th>{h}</th> )
 		</tr>
 	</thead>
 	<tbody></tbody>
 	</table>
 	
 	</div>
-	</div>
+	
 	<script>
-		
 		$(document).ready(function() {
 
 			//Using dataTable (jQuery plugin: http://datatables.net/)
 
-			oTable = $("#son_table").dataTable({
+			oTable = $("#@name").dataTable({
 
 				"iDisplayLength" : 20,
 				"bProcessing" : true,
 				"bAutoWidth" : false,
 				"aaSorting" : [ [ 1, "asc" ] ],
 				"fnRowCallback" : function(nRow, aData, iDisplayIndex) {
-					$('td:eq(0)', nRow).html('<a href="@paths.edit/' + aData[0] + '">' + aData[1] + '</a>');
+					$('td:eq(0)', nRow).html('<a href="@paths.edit/' + aData[0] + '">' + aData[0] + '</a>');
 					return nRow;
 				},
 				"bServerSide" : true,
 				"bJQueryUI" : true,
 				"bRetrieve" : true,
-				"sAjaxSource" : "@routes.SonController.table()",
+				"sAjaxSource" : "@table",
 				"aoColumnDefs" : [ {
 					"bSearchable" : false,
 					//"bVisible" : false,
@@ -57,7 +55,6 @@
 			});
 
 		})
-	
 	</script>
 	
 }

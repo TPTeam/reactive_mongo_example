@@ -24,7 +24,7 @@ object GrandpaController extends Controller with TablePager[GrandPa] with CRUDer
   def index = 
     Action {	
 	  implicit request =>
-	  	Ok(views.html.grandPaPage())
+	  	Ok(views.html.familyPage("grandpa", controllers.routes.GrandpaController.table, elemsToDisplay))
   	}
   
   val singleton = GrandPa

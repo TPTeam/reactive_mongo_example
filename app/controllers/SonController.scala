@@ -24,7 +24,7 @@ object SonController extends Controller with TablePager[Son] with CRUDer[Son] {
   def index = 
     Action {	
 	  implicit request =>
-	  	Ok(views.html.sonPage())
+	  	Ok(views.html.familyPage("son", controllers.routes.SonController.table, elemsToDisplay))
   	}
   
   val singleton = Son

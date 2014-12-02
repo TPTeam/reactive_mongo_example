@@ -20,20 +20,20 @@ import scala.language.postfixOps
 import controllers.helper.{TablePager, CRUDer}
 
 object FatherController extends Controller with TablePager[Father] with CRUDer[Father] {  
-  
+
+  override val elemsToDisplay = 
+    Seq("id","name")
+    
   def index = 
     Action {	
 	  implicit request =>  
-	  	Ok(views.html.fatherPage())
+	  	Ok(views.html.familyPage("father", controllers.routes.FatherController.table, elemsToDisplay))
   	}
   
   val singleton = Father
   
   def elemValues(fa: Father) =
     Seq(fa.id.stringify,fa.name)
-    
-  override val elemsToDisplay = 
-    Seq("id","name")
     
   def formTemplate(formgp: Form[Father])(implicit request: RequestHeader): play.api.templates.Html =
     views.html.fatherForm(formgp)
@@ -83,7 +83,7 @@ object FatherController extends Controller with TablePager[Father] with CRUDer[F
             		          gp = granpa,
             		          sons = sons
             		      )
-                		)}, 300 seconds)
+                		)}, 3 seconds)
             		   Await.result({
             		   Father.findOneById(oid).map(_.get)}, 3 seconds)//.get
               case _ =>	//CREATE
@@ -95,7 +95,7 @@ object FatherController extends Controller with TablePager[Father] with CRUDer[F
                 Await.result(
             		  Father.create(
             		      faht
-            		      ), 300 seconds)
+            		      ), 3 seconds)
                 Await.result(
             		   Father.findOneById(faht.id).map(_.get), 3 seconds)
             }

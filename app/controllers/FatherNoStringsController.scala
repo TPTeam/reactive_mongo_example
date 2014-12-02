@@ -24,7 +24,7 @@ object FatherNoStringsController extends Controller with TablePager[Father] with
   def index = 
     Action {	
 	  implicit request =>  
-	  	Ok(views.html.fatherPage(true))
+	  	Ok(views.html.familyPage("father", controllers.routes.FatherNoStringsController.table, elemsToDisplay))
   	}
   
   val singleton = Father

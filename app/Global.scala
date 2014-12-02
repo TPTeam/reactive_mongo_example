@@ -9,6 +9,14 @@ import scala.concurrent.duration._
 object Global extends GlobalSettings {
 
   override def onStart(app: Application) {
+
+    models.persistance.MongoDBsConnector.dbs.foreach(db => {
+      val res = Await.result(
+        db._2.db.command(
+          new reactivemongo.core.commands.DropDatabase()), 3 seconds)
+      println("DB: " + db._1 + " DROPPED: " + res)
+    })
+    
 	  //println("1- GrandPa!!!!!")
     val GrandPa1 = GrandPa(
     		id= BSONObjectID.generate,
