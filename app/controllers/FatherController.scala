@@ -22,7 +22,21 @@ import controllers.helper.{TablePager, CRUDer}
 object FatherController extends Controller with TablePager[Father] with CRUDer[Father] {  
 
   override val elemsToDisplay = 
-    Seq("id","name")
+    Seq("id", "name", "age", "description")
+
+  override val elemsToFilter =
+    Seq("name", "description")
+    
+  // defining custom reader
+  override def elemReader(keys: Seq[String])(doc: BSONDocument): Seq[String] = {
+    keys.map(k => {
+      (k) match {
+        case "id" => doc.getAs[BSONObjectID]("_id").get.stringify
+        case "age" => doc.getAs[Int]("age").get.toString
+        case _ => doc.getAs[String](k).get.toString
+      }
+    })
+  }
     
   def index = 
     Action {	
@@ -58,9 +72,11 @@ object FatherController extends Controller with TablePager[Father] with CRUDer[F
           //TODO verifyId 
         "id" -> text,
         "name" -> nonEmptyText,
+        "description" -> text,
+        "age" -> of[Int],
         "gp" -> text.verifyOptionBSONId,
         "sons" -> text.verifyOptJson
-       ){(id, name,gp, _sons) =>
+       ){(id, name, description, age, gp, _sons) =>
           {
             val gr = Await.result(GrandPa.findOneByIdString(gp), 3 seconds)
             val so = Await.result(tryChilds(_sons), 10 seconds)
@@ -72,7 +88,7 @@ object FatherController extends Controller with TablePager[Father] with CRUDer[F
 				
             (tryo({
               if (id.equals("")) throw new Exception("")
-              else new BSONObjectID(id)
+              else BSONObjectID.parse(id).toOption.get
               })) match {
               case Some(oid) => //UPDATE
                 	Await.result({
@@ -80,22 +96,26 @@ object FatherController extends Controller with TablePager[Father] with CRUDer[F
             		      Father(
             		          id = oid,
             		          name = name,
+            		          description = description,
+            		          age = age,
             		          gp = granpa,
             		          sons = sons
             		      )
-                		)}, 3 seconds)
+                		)}, 300 seconds)
             		   Await.result({
             		   Father.findOneById(oid).map(_.get)}, 3 seconds)//.get
               case _ =>	//CREATE
                 val faht = Father(
             		          name = name,
+            		          description = description,
+            		          age = age,
             		          gp = granpa,
             		          sons = sons
             		          )
                 Await.result(
             		  Father.create(
             		      faht
-            		      ), 3 seconds)
+            		      ), 300 seconds)
                 Await.result(
             		   Father.findOneById(faht.id).map(_.get), 3 seconds)
             }
@@ -103,6 +123,8 @@ object FatherController extends Controller with TablePager[Father] with CRUDer[F
       }{f => {
         Some(f.id.stringify, 
     		 f.name,
+    		 f.description,
+    		 f.age,
     		 f.gp.map(x => x.id.stringify).getOrElse(""),
     		 Json.stringify(Json.toJson(f.sons.map(s => s.id.stringify)))
     		)

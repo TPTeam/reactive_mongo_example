@@ -32,8 +32,11 @@ object SonController extends Controller with TablePager[Son] with CRUDer[Son] {
   def elemValues(gp: Son) =
     Seq(gp.id.stringify,gp.name)
     
-   override val elemsToDisplay = 
+  override val elemsToDisplay = 
     Seq("id","name")
+    
+  override val elemsToFilter =
+    Seq("name")
     
   def formTemplate(formgp: Form[Son])(implicit request: RequestHeader): play.api.templates.Html =
     views.html.sonForm(formgp)
@@ -52,7 +55,7 @@ object SonController extends Controller with TablePager[Son] with CRUDer[Son] {
             			
             (tryo({
               if (id.equals("")) throw new Exception("")
-              else new BSONObjectID(id)
+              else BSONObjectID.parse(id).toOption.get
             })) match {
               case Some(oid) => 			//UPDATE
                 Await.result(
@@ -71,7 +74,7 @@ object SonController extends Controller with TablePager[Son] with CRUDer[Son] {
             		          fa = father
             		          )
             		       else Son(
-            		          id = new BSONObjectID(id),
+            		          id = BSONObjectID.parse(id).toOption.get,
             		          name = name,
             		          fa = father
             		          )}

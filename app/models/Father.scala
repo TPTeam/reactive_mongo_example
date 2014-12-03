@@ -12,6 +12,8 @@ import scala.language.postfixOps
 case class Father (
     id: BSONObjectID = BSONObjectID.generate,
     name: String,
+    age: Int,
+    description: String = "",
     gp: Option[Reference[GrandPa]] = None,
     sons: List[Reference[Son]] = List()
     ) extends ModelObj(id) {
@@ -30,6 +32,8 @@ object Father extends RefPersistanceCompanion[Father] with FatherPersistanceComp
       Father(
         doc.getAs[BSONObjectID]("_id").get,
         doc.getAs[String]("name").get,
+        doc.getAs[Int]("age").get,
+        doc.getAs[String]("description").get,
         doc.getAs[Reference[GrandPa]]("gp"),
         doc.getAs[List[Reference[Son]]]("sons").getOrElse(List())
         )
@@ -41,6 +45,8 @@ object Father extends RefPersistanceCompanion[Father] with FatherPersistanceComp
       BSONDocument(
         "_id" -> father.id,
         "name" -> father.name,
+        "age" -> father.age,
+        "description" -> father.description,
         "gp" -> father.gp,
         "sons" -> father.sons
         )

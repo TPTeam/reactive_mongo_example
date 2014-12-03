@@ -35,6 +35,9 @@ object GrandpaController extends Controller with TablePager[GrandPa] with CRUDer
   override val elemsToDisplay = 
     Seq("id","name")
     
+  override val elemsToFilter =
+    Seq("name")
+    
   def formTemplate(formgp: Form[GrandPa])(implicit request: RequestHeader): play.api.templates.Html =
     views.html.grandPaForm(formgp)
     
@@ -66,7 +69,7 @@ object GrandpaController extends Controller with TablePager[GrandPa] with CRUDer
               			
             (tryo({
               if (id.equals("")) throw new Exception("")
-              else new BSONObjectID(id)
+              else BSONObjectID.parse(id).toOption.get
               })) match {
               case Some(oid) => //UPDATE
                 	Await.result(
